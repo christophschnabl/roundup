@@ -1,22 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9b8d88a-4052-4fba-866d-c06622fcf9e7" name="Default Changelist" comment="" />
+    <list default="true" id="a9b8d88a-4052-4fba-866d-c06622fcf9e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/Roundup.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/StarlingClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roundup.iml" beforeDir="false" afterPath="$PROJECT_DIR$/roundup.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1ZUsb5VwAgZnYsMc7s4BsBant45" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/kotlin/" />
+      <recent name="$PROJECT_DIR$/src/main/schnabl" />
+      <recent name="$PROJECT_DIR$/src/main/xyz/kotlin/schnabl" />
+      <recent name="$PROJECT_DIR$/src/main/xyz/kotlin/schnabl/xyz" />
+      <recent name="$PROJECT_DIR$/src/xyz/schnabl" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -28,7 +82,44 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584905074959</updated>
+      <workItem from="1584905076778" duration="1010000" />
+      <workItem from="1584906300950" duration="15000" />
+      <workItem from="1584906323912" duration="515000" />
+      <workItem from="1584906846130" duration="124000" />
+      <workItem from="1584906997580" duration="233000" />
+      <workItem from="1584907253966" duration="36000" />
+      <workItem from="1584907302888" duration="8000" />
+      <workItem from="1584907326119" duration="1140000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="560" y="205" width="811" height="669" key="#Project_Structure" timestamp="1584906732094">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="560" y="205" width="811" height="669" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1584906732094" />
+    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584907287757">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584907287757" />
+    <state x="694" y="350" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584906657875">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="694" y="350" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1584906657875" />
+    <state x="648" y="275" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1584907263883">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="648" y="275" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584907263883" />
+    <state x="396" y="147" key="SettingsEditor" timestamp="1584907227800">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="396" y="147" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1584907227800" />
+    <state x="337" y="266" key="new project wizard" timestamp="1584907141379">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="337" y="266" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1584907141379" />
   </component>
 </project>
