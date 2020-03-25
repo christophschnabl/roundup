@@ -28,6 +28,8 @@ fun main() {
     accounts.forEach {
         println(client.getTransactionsForAccountByCategory(it.accountUid, it.defaultCategory, firstDayOfWeek))
     }
+
+    client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
 }
 
 /**
