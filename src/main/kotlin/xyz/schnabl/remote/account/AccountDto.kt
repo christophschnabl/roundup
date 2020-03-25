@@ -1,7 +1,7 @@
 package xyz.schnabl.remote.account
 
 import java.time.LocalDateTime
-import java.util.UUID
+import java.util.*
 
 /**
  * TODO kdoc
@@ -14,8 +14,8 @@ data class AccountsDto (
  * TODO kdoc
  */
 data class AccountDto (
-    val accountUid : UUID, // TODO UUID?
-    val defaultCategory : String, // TODO UUID?
-    val currency: String, // TODO CUrrency?
+    val accountUid : UUID,
+    val defaultCategory : UUID,
+    val currency: Currency,
     val createdAt: LocalDateTime
 )

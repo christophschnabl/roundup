@@ -11,8 +11,11 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import xyz.schnabl.remote.account.AccountDto
 import xyz.schnabl.remote.account.AccountsDto
+import xyz.schnabl.remote.feed.TransactionFeedDto
 import java.time.LocalDateTime
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
+import java.util.UUID
 
 
 /**
@@ -45,30 +48,35 @@ class StarlingClient @Inject constructor(
     /**
      * TODO KDOC
      */
-    fun getTransactionsForAccountByCategory(accountUid: String, categoryUid: String, changesSince: LocalDateTime) {
-        val transactionFeedResourceEndpoint = "$feedEndpoint/$accountsEndpoint/$accountUid/$categoryEndpoint/$categoryUid"
-        //val params = "?changesSince"
-
-        //return getResourceForEndpoint(transactionFeedResourceEndpoint, TransactionFeedDto params)
+    fun getTransactionsForAccountByCategory(
+        accountUid: UUID,
+        categoryUid: UUID,
+        changesSince: LocalDateTime
+    ): TransactionFeedDto {
+        val transactionFeedResourceEndpoint =
+            "$feedEndpoint/$accountUid/$categoryEndpoint/$categoryUid"
+        val params = "?changesSince=${changesSince.toInstant(ZoneOffset.UTC)}"
+        // TODO error handling
+        return getResourceForEndpoint(transactionFeedResourceEndpoint, TransactionFeedDto::class.java, params)
     }
 
 
-    private fun <T> getResourceForEndpoint(endpoint: String, resourceClass: Class<T>, requestParams: String = "") : T {
-        val request = buildRequest("$url/$endpoint")
+    private fun <T> getResourceForEndpoint(endpoint: String, resourceClass: Class<T>, requestParams: String = ""): T {
+        val request = buildRequest("$url/$endpoint$requestParams")
         val response = executeRequest(request)
         return parseResponseBody(response, resourceClass)
     }
 
-    private fun buildRequest(url: String) : Request {
+    private fun buildRequest(url: String): Request {
         return Request.Builder().url(url).build()
     }
 
     private fun executeRequest(request: Request): String {
         val response = client.newCall(request).execute()
-        return response.body?.string()?: throw Exception("Could not access response body") // TODO more logging
+        return response.body?.string() ?: throw Exception("Could not access response body") // TODO more logging
     }
 
-    private fun<T> parseResponseBody(body: String, resourceClass: Class<T>): T {
+    private fun <T> parseResponseBody(body: String, resourceClass: Class<T>): T {
         return gson.fromJson(body, resourceClass)
     }
 

@@ -5,7 +5,6 @@ import com.google.inject.Injector
 import xyz.schnabl.remote.StarlingClient
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
 /**
  * TODO kdco
@@ -18,9 +17,23 @@ fun main() {
     // Get Transactions for User for all accounts (since the beginning of the last week) - calculate date request takes the parameter
 
     val client = injector.getInstance(StarlingClient::class.java)
-    val now = LocalDateTime.now().plusDays(1)
+    val now = LocalDateTime.now()
 
-    val firstDayOfWeek = now.minusDays(now.dayOfWeek.value - 1L)
-    //println(firstDayOfWeek.toInstant(ZoneOffset.UTC))
-    println(client.getAccountsForUser())
+    val firstDayOfWeek = now.toStartDate().minusDays(now.dayOfWeek.value - 1L).toStartDate()
+
+    println(firstDayOfWeek.toInstant(ZoneOffset.UTC))
+
+    val accounts = client.getAccountsForUser()
+
+    accounts.forEach {
+        println(client.getTransactionsForAccountByCategory(it.accountUid, it.defaultCategory, firstDayOfWeek))
+    }
+}
+
+/**
+ * Sets the hours, minutes, etc. to zero by subtracting its current value
+ */
+fun LocalDateTime.toStartDate(): LocalDateTime {
+    return minusHours(this.hour * 1L).minusMinutes(this.minute * 1L).minusSeconds(this.second * 1L)
+        .minusNanos(this.nano * 1L)
 }
