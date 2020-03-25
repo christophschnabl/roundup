@@ -5,6 +5,7 @@ import com.google.inject.Injector
 import xyz.schnabl.remote.StarlingClient
 import java.time.LocalDateTime
 import java.time.ZoneOffset
+import java.util.*
 
 /**
  * TODO kdco
@@ -29,7 +30,9 @@ fun main() {
         println(client.getTransactionsForAccountByCategory(it.accountUid, it.defaultCategory, firstDayOfWeek))
     }
 
-    client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
+    val savingsGoalDto = client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
+
+    client.transferToSavingsGoal(accounts[0].accountUid, savingsGoalDto.savingsGoalUid, UUID.randomUUID(), 10).also { println(it) }
 }
 
 /**

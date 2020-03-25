@@ -16,7 +16,9 @@ import xyz.schnabl.remote.account.AccountDto
 import xyz.schnabl.remote.account.AccountsDto
 import xyz.schnabl.remote.feed.TransactionFeedDto
 import xyz.schnabl.remote.savings.CreateSavingsGoalDto
+import xyz.schnabl.remote.savings.CreateSavingsTransferDto
 import xyz.schnabl.remote.savings.SavingsGoalDto
+import xyz.schnabl.remote.savings.TransferSavingsGoalDto
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -92,8 +94,14 @@ class StarlingClient @Inject constructor(
     /**
      * TODO KDOC
      */
-    fun transferToSavingsGoal(accountUid: UUID, savingsGoalUid: UUID, transferUid: UUID) {
-        val savingsGoalsEndpoint = "$accountEndpoint/$accountUid/$savingsGoalsEndpoint/$addMoneyEndpoint" // TODO this is sduplicated
+    fun transferToSavingsGoal(accountUid: UUID, savingsGoalUid: UUID, transferUid: UUID, amount: Long): TransferSavingsGoalDto {
+        val savingsGoalsEndpoint = "$accountEndpoint/$accountUid/$savingsGoalsEndpoint/$savingsGoalUid/$addMoneyEndpoint/$transferUid" // TODO this is sduplicated
+        val amountDto = CreateSavingsTransferDto(AmountDto(GBP, amount))
+
+        val body = createRequestBodyFromDto(amountDto)
+        val request = buildRequest(savingsGoalsEndpoint).put(body).build()
+
+        return getResourceForEndpoint(request, TransferSavingsGoalDto::class.java)
     }
 
     private fun <T> createRequestBodyFromDto(obj: T): RequestBody {
