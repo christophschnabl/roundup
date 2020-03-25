@@ -2,7 +2,7 @@ package xyz.schnabl
 
 import com.google.inject.Guice
 import com.google.inject.Injector
-import xyz.schnabl.remote.account.transactionfeed.StarlingClient
+import xyz.schnabl.remote.StarlingClient
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
 /**
  * TODO kdco
  */
-    fun main() {
+fun main() {
     val injector: Injector = Guice.createInjector(RoundupModule())
 
     // Take User Input parameter
@@ -21,6 +21,6 @@ import java.time.format.DateTimeFormatter
     val now = LocalDateTime.now().plusDays(1)
 
     val firstDayOfWeek = now.minusDays(now.dayOfWeek.value - 1L)
-    println(firstDayOfWeek.toInstant(ZoneOffset.UTC))
-    //println(client.getAccountsForUser())
+    //println(firstDayOfWeek.toInstant(ZoneOffset.UTC))
+    println(client.getAccountsForUser())
 }

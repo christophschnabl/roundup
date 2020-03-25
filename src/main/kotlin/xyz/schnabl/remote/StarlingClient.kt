@@ -1,4 +1,4 @@
-package xyz.schnabl.remote.account.transactionfeed
+package xyz.schnabl.remote
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -9,6 +9,8 @@ import com.google.inject.Singleton
 import com.google.inject.name.Named
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import xyz.schnabl.remote.account.AccountDto
+import xyz.schnabl.remote.account.AccountsDto
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
 
@@ -20,7 +22,9 @@ import java.time.ZonedDateTime
 class StarlingClient @Inject constructor(
     private val client: OkHttpClient,
     @Named("baseUrl") private val url: String,
-    @Named("accountsEndpoint") private val accountsEndpoint: String
+    @Named("accountsEndpoint") private val accountsEndpoint: String,
+    @Named("feedEndpoint") private val feedEndpoint: String,
+    @Named("categoryEndpoint") private val categoryEndpoint: String
 ) {
 
     private val gson: Gson = GsonBuilder().registerTypeAdapter(LocalDateTime::class.java,
@@ -41,12 +45,15 @@ class StarlingClient @Inject constructor(
     /**
      * TODO KDOC
      */
-    fun getTransactionsForAccount() {
-        return
+    fun getTransactionsForAccountByCategory(accountUid: String, categoryUid: String, changesSince: LocalDateTime) {
+        val transactionFeedResourceEndpoint = "$feedEndpoint/$accountsEndpoint/$accountUid/$categoryEndpoint/$categoryUid"
+        //val params = "?changesSince"
+
+        //return getResourceForEndpoint(transactionFeedResourceEndpoint, TransactionFeedDto params)
     }
 
 
-    private fun <T> getResourceForEndpoint(endpoint: String, resourceClass: Class<T>) : T {
+    private fun <T> getResourceForEndpoint(endpoint: String, resourceClass: Class<T>, requestParams: String = "") : T {
         val request = buildRequest("$url/$endpoint")
         val response = executeRequest(request)
         return parseResponseBody(response, resourceClass)

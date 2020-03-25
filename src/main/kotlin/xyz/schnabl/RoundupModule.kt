@@ -42,6 +42,7 @@ class RoundupModule : AbstractModule() {
         // TODO log incoming requests
         // TODO circuit breaker?
         // TODO network or simple interceptor
+        // LOG IF NOT SUCCESSFUL
         return OkHttpClient().newBuilder().addNetworkInterceptor(AuthenticationInterceptor()).build()
     }
 
