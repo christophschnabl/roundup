@@ -19,6 +19,7 @@ fun main() {
 
     val client = injector.getInstance(StarlingClient::class.java)
     val now = LocalDateTime.now()
+    val savingsGoalName = ""
 
     val firstDayOfWeek = now.toStartDate().minusDays(now.dayOfWeek.value - 1L).toStartDate()
 
@@ -26,13 +27,13 @@ fun main() {
 
     val accounts = client.getAccountsForUser()
 
-    accounts.forEach {
+    accounts.forEach { it ->
         println(client.getTransactionsForAccountByCategory(it.accountUid, it.defaultCategory, firstDayOfWeek))
     }
 
     val savingsGoalDto = client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
 
-    client.transferToSavingsGoal(accounts[0].accountUid, savingsGoalDto.savingsGoalUid, UUID.randomUUID(), 10).also { println(it) }
+    // client.transferToSavingsGoal(accounts[0].accountUid, savingsGoalDto.savingsGoalUid, UUID.randomUUID(), 10).also { println(it) }
 }
 
 /**

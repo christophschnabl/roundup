@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import xyz.schnabl.Config
 import xyz.schnabl.remote.account.AccountDto
 import xyz.schnabl.remote.account.AccountsDto
 import xyz.schnabl.remote.feed.TransactionFeedDto
@@ -34,13 +35,7 @@ private val GBP = Currency.getInstance("GBP")
 @Singleton
 class StarlingClient @Inject constructor(
     private val client: OkHttpClient,
-    @Named("baseUrl") private val url: String, // TODO inject config class
-    @Named("accountsEndpoint") private val accountsEndpoint: String,
-    @Named("feedEndpoint") private val feedEndpoint: String,
-    @Named("categoryEndpoint") private val categoryEndpoint: String,
-    @Named("savingsGoalsEndpoint") private val savingsGoalsEndpoint: String,
-    @Named("accountEndpoint") private val accountEndpoint: String,
-    @Named("addMoneyEndpoint") private val addMoneyEndpoint: String
+    private val config: Config
 ) {
 
     private val gson: Gson = GsonBuilder().registerTypeAdapter(LocalDateTime::class.java,
@@ -57,7 +52,7 @@ class StarlingClient @Inject constructor(
      * TODO KDOC
      */
     fun getAccountsForUser(): List<AccountDto> {
-        return getResourceForEndpoint(buildRequest(accountsEndpoint).build(), AccountsDto::class.java).accounts
+        return getResourceForEndpoint(buildRequest(config.accountsEndpoint).build(), AccountsDto::class.java).accounts
     }
 
     /**
@@ -70,7 +65,8 @@ class StarlingClient @Inject constructor(
     ): TransactionFeedDto { // TODO error handling
 
         val transactionFeedResourceEndpoint =
-            "$feedEndpoint/$accountEndpoint/$accountUid/$categoryEndpoint/$categoryUid"
+            "${config.feedEndpoint}/${config.accountEndpoint}/$accountUid/${config.categoryEndpoint}/$categoryUid"
+
         val params = "changesSince=${changesSince.toInstant(ZoneOffset.UTC)}"
 
         val request = buildRequest("$transactionFeedResourceEndpoint?$params").build()
@@ -82,7 +78,7 @@ class StarlingClient @Inject constructor(
      * TODO KDOC
      */
     fun createSavingsGoal(accountUid: UUID, name: String, target: Long): SavingsGoalDto {
-        val savingsGoalsEndpoint = "$accountEndpoint/$accountUid/$savingsGoalsEndpoint" // TODO refactor
+        val savingsGoalsEndpoint = "${config.accountEndpoint}/$accountUid/${config.savingsGoalsEndpoint}" // TODO refactor
         val savingsGoalDto = CreateSavingsGoalDto(name, GBP, AmountDto(GBP, target))
 
         val body = createRequestBodyFromDto(savingsGoalDto)
@@ -95,7 +91,7 @@ class StarlingClient @Inject constructor(
      * TODO KDOC
      */
     fun transferToSavingsGoal(accountUid: UUID, savingsGoalUid: UUID, transferUid: UUID, amount: Long): TransferSavingsGoalDto {
-        val savingsGoalsEndpoint = "$accountEndpoint/$accountUid/$savingsGoalsEndpoint/$savingsGoalUid/$addMoneyEndpoint/$transferUid" // TODO this is sduplicated
+        val savingsGoalsEndpoint = "${config.accountEndpoint}/$accountUid/${config.savingsGoalsEndpoint}/$savingsGoalUid/${config.addMoneyEndpoint}/$transferUid" // TODO this is sduplicated
         val amountDto = CreateSavingsTransferDto(AmountDto(GBP, amount))
 
         val body = createRequestBodyFromDto(amountDto)
@@ -114,7 +110,7 @@ class StarlingClient @Inject constructor(
     }
 
     private fun buildRequest(endpoint: String): Request.Builder {
-        return Request.Builder().url("$url/$endpoint")
+        return Request.Builder().url("${config.url}/$endpoint")
     }
 
     private fun executeRequest(request: Request): String {

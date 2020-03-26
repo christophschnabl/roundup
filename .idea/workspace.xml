@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9b8d88a-4052-4fba-866d-c06622fcf9e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/savings/CreateSavingsTransferDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/savings/TransferSavingsGoalDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/xyz/schnabl/RoundupTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/Roundup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/Roundup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/RoundupModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/RoundupModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/StarlingClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/StarlingClient.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +57,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Kotlin" />
@@ -75,6 +76,21 @@
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.RoundupKt2">
+    <configuration name="MoneyTransferApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="roundup" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xyz.schnabl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="xyz.schnabl" />
+      <option name="MAIN_CLASS_NAME" value="xyz.schnabl.MoneyTransferApplicationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RoundupKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <module name="roundup" />
       <option name="VM_PARAMETERS" value="" />
@@ -101,7 +117,7 @@
       <option name="MAIN_CLASS_NAME" value="xyz.schnabl.RoundupKt" />
       <option name="WORKING_DIRECTORY" value="" />
       <envs>
-        <env name="STARLING_TOKEN" value="eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAH1Ty5KbMBD8lS3Oqy3zELa55ZYfyAcMMyNbZZAoSTjZSuXfIxAY42zlRnfPtHo04nemvc-aDAYtiHv74QO4TptLC-b2gbbP3jM_trECj3mpsM1FXbRSVOrUitOpPgqu6Az5EcqSD7GYfw1Zk8uTLGReyfo90xASkdfyMBGAaEcTvtuO2P3QFL0PxZmBSinkSWH0PpYCKlCiPNeyohpLJBm9g72xSR3Fgc4oZSGoKnJRtXgQLZckahXZXDLWXMeOONY3RPY-dXHBRypBikNNR1FhG2coKJ4IJXNOgKqdujzagadLSUnFdY4qDPTcuBj07UUIn8OLoIlN0Eqz2_Od9mHHLIDIxZANkw4PkJQQAK89Pyo3_NPpwG8whqt12seVCW1I3zWN0KXiFjowuERDcCTQmuBslw6amEWzRmnXQ9DWCKuEGg35h-Qfp68gHY2jD7ZfR-Qe9GLcgyEI3BB3HOtWOJf14G4cprSDY8WOY0D_PymdlbShA-Q4ZuCLm8M-N_4rLq3s8ArrCD0HiGmgwQhndcFz8gE-mVcpgWWIBLYioXu4LDMlbf0U7djdmnUvvFGbbcKbc8IPg85iXOFT-UwIO-3ylV26nFW6W0OllDtqrnKMrIewA34vpSvzcI9r8OJitxw7bom-42afZ0YEB8bHRX5lsYlfeG1iMg3xBU3vwjp6ctuzq82eXfsDT_-MQH9_pQZSCzW2Hl28hMe7mlMAzsR8p8_EVJH9-QuNUSjwQAUAAA.ciQLoD4MmIj8S16_GbHihhUlJflOhQjAFWQ3SaFeAK5p370CTitIJItADphQ42ZB_ruiypeTY4qohflthLmnEpjbK1uhU2Lbwkwev9KWQz6RX8eqiTJ9OjF6pKA2H9vkD4zcLhVKHgNeyXDPSjYcOAS_bEZHlr-RSdRHF_XXz2UvTYk7A2WIMp3e8wtmwgo11q8koJyykwW9_gpdLZS7AVIQjTVXlHEMTpz5UfhUli-Z4KmSRMiwcsJS-PfbOtTYU_4VBchM88I6l-jDVkRJUkbdANN7AwL48hnueBJI7RMzKOdfmoO75pDh22ZR2Zr8Eqt1WWU9Ixx2efwUFCD1WVKD8AnoI-NNohqDj4rOf4-znY9gF1O6qkttG9PxGFld_VgmIpds40vBbBkQKALb_Cjczi_uvmC2uRt-nfbOW73QxROmyqPDQxcYQxF3T5FVH68aBOlWfsxTzCXEcQbZ7SgI6U0h8tVuuufUBE4yz4wNpPxXuhu8APxmi1viCuUDVoj-SR8VDxsS__1fZYuahJeo2B3Os8MQBmdVHlsLIFE2qeGIVgaiCE90zHdPLoC3Dg8IfEU48SuuUBHMww2XOgHAstFr85XqQ16nO27CeRfj9A-QFg7dbjplhoGnyvR5ogFY3BUTXNxV-OMAl-UIyrLuwBi9ZwpOA81u-rawra8" />
+        <env name="STARLING_TOKEN" value="eyJhbGciOiJQUzI1NiIsInppcCI6IkdaSVAifQ.H4sIAAAAAAAAAH1Ty46cMBD8lRXn9WrAvG-55QfyAe12M2MN2Mg2k6yi_HsM5jFMVrlRVd3larf5nSjnkjaBUTFJg_lwHmyv9FWAvn-gGZL3xE0iVGCV8g5FyspMFCzvasHquqwY5bKBtALO6RKK6deYtGlRF5zXPE_fEwU-ElmRNjMBiGbS_rvpJdkfSgbvS9YQSF6wou4weFecQQ4d401Z5LJEjrII3t7cSceOrKzTWkDOsixvWN7w0FGkJcMLF2nWQCX43BHG-oZIzsUuyqiSHAp2KWXFchRhhkyGE4ETpRKwE-U8MJqR5kuJSdltico0DNTaEPTtRfCf44ugJGmvOkX2zPfK-ROzAiltCNmSVH4HUfEe8DbQXnngn1Z5eoPJ34xVLqyMKS3VQ8kJ-lgsoAeNazQEKxka7a3p40Ezs2pGd8oO4JXRzHSsm7R0u-T20zcQj8bJeTNsI9IAajUeQEvw1ErqKdRtcCkbwN7Jz2lHSx1ZCgHd_6R4VtTGHpDCmJ6udgn73PivuLaSxRtsIwzkIaSBFgNc1BUvyUf4JNqkCNYhIjiKmBrgus4Ute2Tiam_t9te6KAO24gP54h3g95gWOFT-UIwM-_ylV27rOlUv4WKKU_UUmUJSY3-BNxZilfm4BHW4NjVHDlO3Br9xC0-zwzzFrQLi_zK4hC_8DrEaOrDC5rfhbHyye3MbjZnduv3NP8zDN3jlRplt1KTcGjDJezvakkBuBDLnT4Tc0Xy5y83-zk9QAUAAA.N8Pq2ENlDYoNKVRqPpczDk_KeVo56tYbBWudHIdpngFb6uMIHg5VP6pJ2_lVHh4ZZmsuGeWjVv4v9T_JWU_5sr7_vHvnMGeVOEuxYOLrIsY6e1Uva79rztyqEb1J1mpdFZaqj7IKPWEdXH4JCNcgQBfzvs75cvD5Vw0kylobAlYXzzISYq-tFSa86yiOr-AR9MYjFoFFwmfaGtnTfe2kstJ-5-KTlW8nj3MCWXYst0TyzsiawF61Ox-2Xp4ulgMo0R2o9v96EYZkShbaUmkngKbUDF_WNw2hJPryP8cFaDSNb2LdGoggiKfjCwH6CLyth0CwC4YmxafCv7lFeXEvnzVk-XvOGgkqN8QcH4N__7QPb-qVc306haSsD6Qa0vwKPfRvp_YcB5QycFzcQ0Rw42L8sng_cyGHc40mb8GRrCcl_7kcnjTz2VmjU0g-egypsPjNP4jAW2I__nBNJ2G4Jrvf-_ZjN5k1YYWRYQLAlW47gmzQ3HBcpvqpRdV2sHOX24cxOABPZljqhN_P0XHXymTp0yhweJ0FTanRBKmFOODRe1OyLbWFs0zl16uuR_6gBQ6loF4xswzmq56iwPfEPeanLgPKho_9P_OVPXL1pwDk5xND3CXKKJbjFxrvy2qN2dvr8320cZ43MhczwBNXwrmvuV1vyEmX5fhoQRcBgiA" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -110,10 +126,12 @@
     <list>
       <item itemvalue="Kotlin.RoundupKt" />
       <item itemvalue="Kotlin.RoundupKt2" />
+      <item itemvalue="JUnit.MoneyTransferApplicationTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Kotlin.RoundupKt2" />
+        <item itemvalue="JUnit.MoneyTransferApplicationTest" />
         <item itemvalue="Kotlin.RoundupKt" />
       </list>
     </recent_temporary>
@@ -137,6 +155,7 @@
       <workItem from="1584907302888" duration="8000" />
       <workItem from="1584907326119" duration="26027000" />
       <workItem from="1585164748155" duration="571000" />
+      <workItem from="1585217393433" duration="4326000" />
     </task>
     <servers />
   </component>
@@ -144,14 +163,14 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="560" y="205" width="811" height="669" key="#Project_Structure" timestamp="1584906732094">
+    <state x="560" y="205" width="811" height="669" key="#Project_Structure" timestamp="1585252593106">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="560" y="205" width="811" height="669" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1584906732094" />
-    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585165674081">
+    <state x="560" y="205" width="811" height="669" key="#Project_Structure/0.0.1920.1080@0.0.1920.1080" timestamp="1585252593106" />
+    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585252231775">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1585165674081" />
+    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1585252231775" />
     <state x="694" y="350" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584906657875">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -172,45 +191,45 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="714" y="312" key="EnvironmentVariablesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1584913556541" />
-    <state width="1878" height="375" key="GridCell.Tab.0.bottom" timestamp="1585176250580">
+    <state width="1878" height="355" key="GridCell.Tab.0.bottom" timestamp="1585255055627">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1585176250580" />
+    <state width="1878" height="355" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1585255055627" />
     <state width="1878" height="375" key="GridCell.Tab.0.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805424" />
-    <state width="1878" height="375" key="GridCell.Tab.0.center" timestamp="1585176250579">
+    <state width="1878" height="355" key="GridCell.Tab.0.center" timestamp="1585255055625">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1585176250579" />
+    <state width="1878" height="355" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1585255055625" />
     <state width="1878" height="375" key="GridCell.Tab.0.center/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805422" />
-    <state width="1878" height="375" key="GridCell.Tab.0.left" timestamp="1585176250578">
+    <state width="1878" height="355" key="GridCell.Tab.0.left" timestamp="1585255055624">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1585176250578" />
+    <state width="1878" height="355" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1585255055624" />
     <state width="1878" height="375" key="GridCell.Tab.0.left/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805422" />
-    <state width="1878" height="375" key="GridCell.Tab.0.right" timestamp="1585176250580">
+    <state width="1878" height="355" key="GridCell.Tab.0.right" timestamp="1585255055626">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1585176250580" />
+    <state width="1878" height="355" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1585255055626" />
     <state width="1878" height="375" key="GridCell.Tab.0.right/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805424" />
-    <state width="1878" height="375" key="GridCell.Tab.1.bottom" timestamp="1585176252456">
+    <state width="1878" height="375" key="GridCell.Tab.1.bottom" timestamp="1585206921764">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1585176252456" />
+    <state width="1878" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1585206921764" />
     <state width="1878" height="375" key="GridCell.Tab.1.bottom/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805426" />
-    <state width="1878" height="375" key="GridCell.Tab.1.center" timestamp="1585176252455">
+    <state width="1878" height="375" key="GridCell.Tab.1.center" timestamp="1585206921763">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1585176252455" />
+    <state width="1878" height="375" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1585206921763" />
     <state width="1878" height="375" key="GridCell.Tab.1.center/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805425" />
-    <state width="1878" height="375" key="GridCell.Tab.1.left" timestamp="1585176252454">
+    <state width="1878" height="375" key="GridCell.Tab.1.left" timestamp="1585206921762">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1585176252454" />
+    <state width="1878" height="375" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1585206921762" />
     <state width="1878" height="375" key="GridCell.Tab.1.left/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805425" />
-    <state width="1878" height="375" key="GridCell.Tab.1.right" timestamp="1585176252455">
+    <state width="1878" height="375" key="GridCell.Tab.1.right" timestamp="1585206921763">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="375" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1585176252455" />
+    <state width="1878" height="375" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1585206921763" />
     <state width="1878" height="375" key="GridCell.Tab.1.right/0.23.1920.1057@0.23.1920.1057" timestamp="1585157805426" />
     <state x="396" y="147" key="SettingsEditor" timestamp="1584911175509">
       <screen x="0" y="0" width="1920" height="1080" />
@@ -220,6 +239,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080@0.0.1920.1080" timestamp="1585175260989" />
+    <state x="541" y="265" width="837" height="550" key="find.popup" timestamp="1585253146369">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="541" y="265" width="837" height="550" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1585253146369" />
     <state x="337" y="266" key="new project wizard" timestamp="1584907141379">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -234,21 +257,21 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/StarlingClient.kt</url>
-          <line>55</line>
+          <line>51</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/StarlingClient.kt</url>
-          <line>119</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/Roundup.kt</url>
-          <line>34</line>
+          <line>39</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/xyz/schnabl/remote/StarlingClient.kt</url>
+          <line>99</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

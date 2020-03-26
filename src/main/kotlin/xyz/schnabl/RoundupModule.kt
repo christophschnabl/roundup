@@ -2,6 +2,7 @@ package xyz.schnabl
 
 import com.google.inject.AbstractModule
 import com.google.inject.Provides
+import com.google.inject.name.Named
 import com.google.inject.name.Names
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -30,6 +31,18 @@ internal class AuthenticationInterceptor : Interceptor {
         return chain.proceed(request)
     }
 }
+
+data class Config( //TODO rethink this
+    val url: String,
+    val accountsEndpoint: String,
+    val feedEndpoint: String,
+    val categoryEndpoint: String,
+    val savingsGoalsEndpoint: String,
+    val accountEndpoint: String,
+    val addMoneyEndpoint: String
+)
+
+
 class RoundupModule : AbstractModule() {
     override fun configure() {
         loadProperties()
@@ -42,8 +55,22 @@ class RoundupModule : AbstractModule() {
         // TODO log incoming requests
         // TODO circuit breaker?
         // TODO network or simple interceptor
+        // TODO authentication failed
         // LOG IF NOT SUCCESSFUL
         return OkHttpClient().newBuilder().addNetworkInterceptor(AuthenticationInterceptor()).build()
+    }
+
+    @Provides
+    fun provideConfig(
+        @Named("baseUrl") url: String,
+        @Named("accountsEndpoint") accountsEndpoint: String,
+        @Named("feedEndpoint") feedEndpoint: String,
+        @Named("categoryEndpoint") categoryEndpoint: String,
+        @Named("savingsGoalsEndpoint") savingsGoalsEndpoint: String,
+        @Named("accountEndpoint") accountEndpoint: String,
+        @Named("addMoneyEndpoint") addMoneyEndpoint: String
+    ): Config {
+        return Config(url,accountsEndpoint, feedEndpoint, categoryEndpoint, savingsGoalsEndpoint, accountEndpoint, addMoneyEndpoint)
     }
 
 
