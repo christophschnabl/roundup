@@ -74,6 +74,33 @@ class RoundupIntegrationTest {
     }
 
 
+    @Test
+    fun `testGETFeedHappyPath`() {
+        val transactionTime1 = parseTime("2020-03-26T20:44:45.601Z")
+        val settlementTime1 = parseTime("2020-03-26T20:44:45.839Z")
+
+        val feedItem1Uid = UUID.fromString("26bc1249-dc3e-481e-bf81-b2872f224f28")
+        val feedItem1Amount = AmountDto(GBP, 4242)
+        val feedItem1 = FeedItemDto(feedItem1Uid, defaultCategory, feedItem1Amount, TransactionDirection.OUT, transactionTime1, settlementTime1)
+
+
+        val transactionTime2 = parseTime("2020-03-26T20:30:04.977Z")
+        val settlementTime2 = parseTime("2020-03-26T20:30:04.977Z")
+
+        val feedItem2Uid = UUID.fromString("a6d8e32d-99db-403b-ad0e-5267f060b068")
+        val feedItem2Amount = AmountDto(GBP, 10)
+        val feedItem2 = FeedItemDto(feedItem2Uid, defaultCategory, feedItem2Amount, TransactionDirection.OUT, transactionTime2, settlementTime2)
+
+        val expectedFeed = TransactionFeedDto(listOf(feedItem1, feedItem2))
+
+
+        server.enqueue(responseBodyFromJson("feed.json"))
+
+        val actualFeed = client.getTransactionsForAccountByCategory(expectedAccount.accountUid, expectedAccount.defaultCategory, LocalDateTime.now())
+
+        assertEquals(expectedFeed, actualFeed)
+    }
+
 
     private fun readJson(fileName: String): String {
         return this::class.java.getResource("/$fileName").readText()
