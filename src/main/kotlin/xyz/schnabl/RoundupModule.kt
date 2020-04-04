@@ -1,5 +1,9 @@
 package xyz.schnabl
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializer
+import com.google.gson.JsonElement
 import com.google.inject.AbstractModule
 import com.google.inject.Provides
 import com.google.inject.name.Named
@@ -10,6 +14,8 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.FileReader
 import java.io.IOException
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import java.util.*
 
 
@@ -47,7 +53,7 @@ class RoundupModule : AbstractModule() {
     override fun configure() {
         loadProperties()
 
-        // bind stuff here
+        bind(JsonSerdeService::class.java).to(GsonSerdeService::class.java)
     }
 
     @Provides
@@ -58,6 +64,18 @@ class RoundupModule : AbstractModule() {
         // TODO authentication failed
         // LOG IF NOT SUCCESSFUL
         return OkHttpClient().newBuilder().addNetworkInterceptor(AuthenticationInterceptor()).build()
+    }
+
+    @Provides
+    fun provideGson(): Gson {
+        return GsonBuilder().registerTypeAdapter(
+            LocalDateTime::class.java,
+            JsonDeserializer { json: JsonElement, _, _ ->
+                    ZonedDateTime.parse(
+                        json.asJsonPrimitive.asString
+                    ).toLocalDateTime()
+                } as JsonDeserializer<LocalDateTime>
+        ).create()
     }
 
     @Provides

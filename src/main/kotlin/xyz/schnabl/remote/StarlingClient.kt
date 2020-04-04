@@ -13,6 +13,7 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import xyz.schnabl.Config
+import xyz.schnabl.JsonSerdeService
 import xyz.schnabl.remote.account.AccountDto
 import xyz.schnabl.remote.account.AccountsDto
 import xyz.schnabl.remote.feed.TransactionFeedDto
@@ -35,18 +36,12 @@ private val GBP = Currency.getInstance("GBP")
 @Singleton
 class StarlingClient @Inject constructor(
     private val client: OkHttpClient,
-    private val config: Config
+    private val config: Config,
+    private val json: JsonSerdeService
 ) {
 
-    private val gson: Gson = GsonBuilder().registerTypeAdapter(LocalDateTime::class.java,
-        JsonDeserializer { json: JsonElement, _, _ ->
-            ZonedDateTime.parse(
-                json.asJsonPrimitive.asString
-            ).toLocalDateTime()
-        } as JsonDeserializer<LocalDateTime>
-    ).create() // TODO provide and inject json if needed in other components
 
-    // TODO refactor http interactions
+    // TODO refactor http interactions -> provide HTTPClient
 
     /**
      * TODO KDOC
@@ -100,8 +95,10 @@ class StarlingClient @Inject constructor(
         return getResourceForEndpoint(request, TransferSavingsGoalDto::class.java)
     }
 
+    // TODO get savings goal here
+
     private fun <T> createRequestBodyFromDto(obj: T): RequestBody {
-        return gson.toJson(obj).toRequestBody("application/json".toMediaType())
+        return json.toJson(obj).toRequestBody("application/json".toMediaType())
     }
 
     private fun <T> getResourceForEndpoint(request: Request, resourceClass: Class<T>): T {
@@ -119,7 +116,7 @@ class StarlingClient @Inject constructor(
     }
 
     private fun <T> parseResponseBody(body: String, resourceClass: Class<T>): T {
-        return gson.fromJson(body, resourceClass)
+        return json.fromJson(body, resourceClass)
     }
 
 }

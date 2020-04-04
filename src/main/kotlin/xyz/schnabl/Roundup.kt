@@ -38,6 +38,7 @@ fun main() {
         }
     }.flatten()
 
+    // TODO isolate into own class that can be tested easily
     val amountToTopUp = outgoingTransactionsForAllAccounts.map { transaction ->
         transaction.amount.minorUnits
     }.also {
@@ -53,6 +54,8 @@ fun main() {
     // TODO insufficient funds?
     // TODO when to create a savings goal
     // client.transferToSavingsGoal(accounts[0].accountUid, savingsGoalDto.savingsGoalUid, UUID.randomUUID(), 10).also { println(it) }
+
+    // TODO query savings goal
 }
 
 // TODO Documentation or source code comments to help your reviewer orient themselves will also be appreciated!
