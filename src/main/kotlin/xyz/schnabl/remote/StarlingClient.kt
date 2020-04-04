@@ -65,7 +65,7 @@ class StarlingClient @Inject constructor(
     ): TransactionFeedDto { // TODO error handling
 
         val transactionFeedResourceEndpoint =
-            "${config.feedEndpoint}/${config.accountEndpoint}/$accountUid/${config.categoryEndpoint}/$categoryUid"
+            "${config.feedEndpoint}/${config.accountEndpoint}/$accountUid/${config.categoryEndpoint}/$categoryUid" // TODO build in config
 
         val params = "changesSince=${changesSince.toInstant(ZoneOffset.UTC)}"
 

@@ -1,0 +1,57 @@
+{
+  "feedItems": [
+    {
+      "feedItemUid": "26bc1249-dc3e-481e-bf81-b2872f224f28",
+      "categoryUid": "0791a3a1-487c-4998-b11b-3852dc833ed3",
+      "amount": {
+        "currency": "GBP",
+        "minorUnits": 4242
+      },
+      "sourceAmount": {
+        "currency": "GBP",
+        "minorUnits": 4242
+      },
+      "direction": "OUT",
+      "updatedAt": "2020-03-26T20:44:45.894Z",
+      "transactionTime": "2020-03-26T20:44:45.601Z",
+      "settlementTime": "2020-03-26T20:44:45.839Z",
+      "source": "FASTER_PAYMENTS_OUT",
+      "status": "SETTLED",
+      "counterPartyType": "PAYEE",
+      "counterPartyUid": "c68a126c-4ee5-42e3-afcd-31d3fd727fbd",
+      "counterPartyName": "Mickey Mouse",
+      "counterPartySubEntityUid": "dd89ac5d-cd08-420e-a07b-46f9c1cb2ca7",
+      "counterPartySubEntityName": "UK account",
+      "counterPartySubEntityIdentifier": "204514",
+      "counterPartySubEntitySubIdentifier": "00000825",
+      "reference": "External Payment",
+      "country": "GB",
+      "spendingCategory": "PAYMENTS",
+      "hasAttachment": false
+    },
+    {
+      "feedItemUid": "a6d8e32d-99db-403b-ad0e-5267f060b068",
+      "categoryUid": "0791a3a1-487c-4998-b11b-3852dc833ed3",
+      "amount": {
+        "currency": "GBP",
+        "minorUnits": 10
+      },
+      "sourceAmount": {
+        "currency": "GBP",
+        "minorUnits": 10
+      },
+      "direction": "OUT",
+      "updatedAt": "2020-03-26T20:30:05.043Z",
+      "transactionTime": "2020-03-26T20:30:04.977Z",
+      "settlementTime": "2020-03-26T20:30:04.977Z",
+      "source": "INTERNAL_TRANSFER",
+      "status": "SETTLED",
+      "counterPartyType": "CATEGORY",
+      "counterPartyUid": "0b18026c-1fa8-4538-b168-6d84525583c9",
+      "counterPartyName": "journey",
+      "country": "GB",
+      "spendingCategory": "SAVING",
+      "hasAttachment": false
+    }
+  ]
+}
