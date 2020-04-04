@@ -6,6 +6,7 @@ https://api-sandbox.starlingbank.com
 Assumptions:
 Currency is always GBP
 
+no rest resource 
 Notes on how the API is consumed:
 I made certain decisions that would not be done in a production grade system to not break the limit:
 No Circuit Breakers implemented

@@ -3,9 +3,10 @@ package xyz.schnabl
 import com.google.inject.Guice
 import com.google.inject.Injector
 import xyz.schnabl.remote.StarlingClient
+import xyz.schnabl.remote.feed.TransactionDirection
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.util.*
+
 
 /**
  * TODO kdco
@@ -18,7 +19,7 @@ fun main() {
     // Get Transactions for User for all accounts (since the beginning of the last week) - calculate date request takes the parameter
 
     val client = injector.getInstance(StarlingClient::class.java)
-    val now = LocalDateTime.now()
+    val now = LocalDateTime.now().minusDays(10)
     val savingsGoalName = ""
 
     val firstDayOfWeek = now.toStartDate().minusDays(now.dayOfWeek.value - 1L).toStartDate()
@@ -27,14 +28,35 @@ fun main() {
 
     val accounts = client.getAccountsForUser()
 
-    accounts.forEach { it ->
-        println(client.getTransactionsForAccountByCategory(it.accountUid, it.defaultCategory, firstDayOfWeek))
-    }
+    val outgoingTransactionsForAllAccounts = accounts.map { account ->
+        println(client.getTransactionsForAccountByCategory(account.accountUid, account.defaultCategory, firstDayOfWeek))
+        val transactions = client.getTransactionsForAccountByCategory(account.accountUid, account.defaultCategory, firstDayOfWeek)
+        transactions.feedItems.filter {feedItem ->
+            feedItem.direction == TransactionDirection.OUT
+        }.map { feedItem ->
+            feedItem
+        }
+    }.flatten()
 
-    val savingsGoalDto = client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
+    val amountToTopUp = outgoingTransactionsForAllAccounts.map { transaction ->
+        transaction.amount.minorUnits
+    }.also {
+        println(it)
+    }.map {amount ->
+        (100 * (amount / 100) + 100) - amount
+    }.also {
+        println(it)
+    }.sum()
+    // TODO add info when printing
 
+    // val savingsGoalDto = client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
+    // TODO insufficient funds?
+    // TODO when to create a savings goal
     // client.transferToSavingsGoal(accounts[0].accountUid, savingsGoalDto.savingsGoalUid, UUID.randomUUID(), 10).also { println(it) }
 }
+
+// TODO Documentation or source code comments to help your reviewer orient themselves will also be appreciated!
+
 
 /**
  * Sets the hours, minutes, etc. to zero by subtracting its current value
