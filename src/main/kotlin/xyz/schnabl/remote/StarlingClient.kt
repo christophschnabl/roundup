@@ -1,29 +1,24 @@
 package xyz.schnabl.remote
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonDeserializer
-import com.google.gson.JsonElement
+
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import com.google.inject.name.Named
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import xyz.schnabl.Config
-import xyz.schnabl.JsonSerdeService
 import xyz.schnabl.remote.account.AccountDto
 import xyz.schnabl.remote.account.AccountsDto
 import xyz.schnabl.remote.feed.TransactionFeedDto
 import xyz.schnabl.remote.savings.CreateSavingsGoalDto
 import xyz.schnabl.remote.savings.CreateSavingsTransferDto
 import xyz.schnabl.remote.savings.SavingsGoalDto
+import xyz.schnabl.remote.savings.SavingsGoalInfoDto
 import xyz.schnabl.remote.savings.TransferSavingsGoalDto
 import java.time.LocalDateTime
 import java.time.ZoneOffset
-import java.time.ZonedDateTime
 import java.util.Currency
 import java.util.UUID
 
@@ -95,7 +90,12 @@ class StarlingClient @Inject constructor(
         return getResourceForEndpoint(request, TransferSavingsGoalDto::class.java)
     }
 
-    // TODO get savings goal here
+    /**
+     * TODO Kdoc
+     */
+    fun getSavingsGoal(accountUid: UUID, savingsGoalUid: UUID) : SavingsGoalInfoDto {
+        return getResourceForEndpoint(buildRequest("${config.accountEndpoint}/$accountUid/${config.savingsGoalsEndpoint}/$savingsGoalUid").build(), SavingsGoalInfoDto::class.java)
+    }
 
     private fun <T> createRequestBodyFromDto(obj: T): RequestBody {
         return json.toJson(obj).toRequestBody("application/json".toMediaType())
@@ -112,7 +112,12 @@ class StarlingClient @Inject constructor(
 
     private fun executeRequest(request: Request): String {
         val response = client.newCall(request).execute()
-        return response.body?.string() ?: throw Exception("Could not access response body") // TODO more logging and handle 404s
+
+        if (response.code != 200 && response.code != 201) {
+            throw IllegalStateException("Request unsuccessful with response (${response.body?.string()}) and code (${response.code}) for request ($request)")
+        }
+
+        return response.body?.string() ?: throw Exception("Could not access response body")
     }
 
     private fun <T> parseResponseBody(body: String, resourceClass: Class<T>): T {
