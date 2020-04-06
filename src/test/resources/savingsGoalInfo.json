@@ -1,0 +1,13 @@
+{
+  "savingsGoalUid": "303f02e2-90af-4444-a0a1-cec0469b9207",
+  "name": "journey",
+  "target": {
+    "currency": "GBP",
+    "minorUnits": 113
+  },
+  "totalSaved": {
+    "currency": "GBP",
+    "minorUnits": 10
+  },
+  "savedPercentage": 11
+}

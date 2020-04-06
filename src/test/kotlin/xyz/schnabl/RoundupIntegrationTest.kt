@@ -23,6 +23,7 @@ import xyz.schnabl.remote.feed.TransactionFeedDto
 import xyz.schnabl.remote.savings.CreateSavingsGoalDto
 import xyz.schnabl.remote.savings.CreateSavingsTransferDto
 import xyz.schnabl.remote.savings.SavingsGoalDto
+import xyz.schnabl.remote.savings.SavingsGoalInfoDto
 import xyz.schnabl.remote.savings.TransferSavingsGoalDto
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -157,6 +158,25 @@ class RoundupIntegrationTest {
 
         assertEquals(expectedSavingsTransfer, savingsTransfer)
     }
+
+    @Test
+    fun `testGETSavingsGoalHappyPath`() {
+        val expected = SavingsGoalInfoDto(savingGoalsUid, "journey", AmountDto(GBP, 113), AmountDto(GBP, 10), 11)
+        val expectedUrl = server.url("api/v2/account/$accountUid/savings-goals/$savingGoalsUid")
+
+        // Given
+        server.enqueue(responseBodyFromJson("savingsGoalInfo.json"))
+
+        // When
+        val actual = client.getSavingsGoal(accountUid, savingGoalsUid)
+
+        val recordedRequest = server.takeRequest()
+
+        // Then
+        assertEquals(expected, actual)
+        assertEquals(expectedUrl, recordedRequest.requestUrl)
+    }
+
 
 
     private fun readJson(fileName: String): String {
