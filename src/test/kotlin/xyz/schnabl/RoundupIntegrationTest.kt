@@ -16,8 +16,10 @@ import org.junit.Test
 import xyz.schnabl.remote.AmountDto
 import xyz.schnabl.remote.GsonSerdeService
 import xyz.schnabl.remote.StarlingClient
+import xyz.schnabl.remote.StarlingClientImpl
 import xyz.schnabl.remote.account.AccountDto
 import xyz.schnabl.remote.feed.FeedItemDto
+import xyz.schnabl.remote.feed.Source
 import xyz.schnabl.remote.feed.TransactionDirection
 import xyz.schnabl.remote.feed.TransactionFeedDto
 import xyz.schnabl.remote.savings.CreateSavingsGoalDto
@@ -29,7 +31,8 @@ import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
+import java.util.Currency
+import java.util.UUID
 import kotlin.test.assertEquals
 
 
@@ -56,9 +59,8 @@ class RoundupIntegrationTest {
     @Before
     fun setUp() {
         server.start()
-        // TODO load config dynamically
         val config = Config("http://${server.hostName}:${server.port}/api/v2", "accounts", "feed", "category", "savings-goals", "account", "add-money")
-        client = StarlingClient(OkHttpClient(), config, GsonSerdeService(gson))
+        client = StarlingClientImpl(OkHttpClient(), config, GsonSerdeService(gson))
     }
 
     @After
@@ -92,7 +94,7 @@ class RoundupIntegrationTest {
 
         val feedItem1Uid = UUID.fromString("26bc1249-dc3e-481e-bf81-b2872f224f28")
         val feedItem1Amount = AmountDto(GBP, 4242)
-        val feedItem1 = FeedItemDto(feedItem1Uid, defaultCategory, feedItem1Amount, TransactionDirection.OUT, transactionTime1, settlementTime1)
+        val feedItem1 = FeedItemDto(feedItem1Uid, defaultCategory, feedItem1Amount, TransactionDirection.OUT, transactionTime1, settlementTime1, Source.FASTER_PAYMENTS_OUT)
 
 
         val transactionTime2 = parseTime("2020-03-26T20:30:04.977Z")
@@ -100,7 +102,7 @@ class RoundupIntegrationTest {
 
         val feedItem2Uid = UUID.fromString("a6d8e32d-99db-403b-ad0e-5267f060b068")
         val feedItem2Amount = AmountDto(GBP, 10)
-        val feedItem2 = FeedItemDto(feedItem2Uid, defaultCategory, feedItem2Amount, TransactionDirection.OUT, transactionTime2, settlementTime2)
+        val feedItem2 = FeedItemDto(feedItem2Uid, defaultCategory, feedItem2Amount, TransactionDirection.OUT, transactionTime2, settlementTime2, Source.INTERNAL_TRANSFER)
 
         val changesSince = LocalDateTime.now()
         val expectedFeed = TransactionFeedDto(listOf(feedItem1, feedItem2))
@@ -176,7 +178,6 @@ class RoundupIntegrationTest {
         assertEquals(expected, actual)
         assertEquals(expectedUrl, recordedRequest.requestUrl)
     }
-
 
 
     private fun readJson(fileName: String): String {
