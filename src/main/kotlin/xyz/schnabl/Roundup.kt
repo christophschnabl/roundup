@@ -17,9 +17,6 @@ fun main() {
     val name = "Flight to Vienna"
     val target = 10000L
 
-    // TODO insufficient funds document
-    // TODO when to create a savings goal document
-
     val transactionsForAccount = roundupService.getAllOutgoingTransactionsForFirstAccount()
     val roundUp = roundupService.getRoundupSumForTransactions(transactionsForAccount.second)
     val savingsGoalInfo = roundupService.createAndTransferToSavingsGoal(transactionsForAccount.first, name, target, roundUp)

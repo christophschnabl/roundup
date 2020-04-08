@@ -31,7 +31,7 @@ internal class AuthenticationInterceptor : Interceptor {
 
         val bearerToken = "Bearer " + System.getenv("STARLING_TOKEN")
 
-        // TODO add header constants/ is there some sort of enum
+        // Please use constants for the headers here :)
         val request = originalRequest.newBuilder()
             .addHeader("Accept", "application/json")
             .addHeader("User-Agent", "Chris S.")
@@ -52,12 +52,6 @@ class RoundupModule : AbstractModule() {
 
     @Provides
     fun provideHttpClient(): OkHttpClient {
-        // Add to readme
-        // TODO log incoming requests
-        // TODO circuit breaker?
-        // TODO network or simple interceptor
-        // TODO authentication failed
-        // TODO log
         return OkHttpClient().newBuilder().addNetworkInterceptor(AuthenticationInterceptor()).build()
     }
 
@@ -94,7 +88,6 @@ class RoundupModule : AbstractModule() {
             properties.load(configFileName)
             Names.bindProperties(binder(), properties)
         } catch (ex: IOException) {
-            // TODO logger error here and exit application ->
             ex.printStackTrace()
         }
     }
