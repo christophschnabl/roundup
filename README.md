@@ -1,8 +1,15 @@
 # 💸 👆 Roundup
 
 The following application runs the round up for the configured user since the first day of the week for all outgoing (non-internal) transactions and transfers this sum into the configured savings goal (which is created also).
+I chose the following, as little as possible, light-weight frameworks/libraries with simplicity in mind:
+* Guice for Dependency Injection and Bindings
+* Gson for Serde (could easily be swapped)
+* OkHttp as an HttpClient
 
- 
+For Testing:
+* Junit
+* Kotlin Mockito
+* OkHttp Mockserver for Integration and Application Tests
 
 ## Build
 
