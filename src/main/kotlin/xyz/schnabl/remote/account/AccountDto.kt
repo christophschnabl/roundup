@@ -1,17 +1,18 @@
 package xyz.schnabl.remote.account
 
 import java.time.LocalDateTime
-import java.util.*
+import java.util.UUID
+import java.util.Currency
 
 /**
- * TODO kdoc
+ * Wraps accounts in a list with a key needed for the serialization
  */
 data class AccountsDto (
     val accounts: List<AccountDto>
 )
 
 /**
- * TODO kdoc
+ * Represents an Account as specified in the Starling API
  */
 data class AccountDto (
     val accountUid : UUID,

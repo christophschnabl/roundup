@@ -3,7 +3,7 @@ package xyz.schnabl.remote
 import java.util.Currency
 
 /**
- * KDOC
+ * Represents the Amount
  */
 data class AmountDto (
     val currency: Currency,

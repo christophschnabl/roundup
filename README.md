@@ -1,10 +1,16 @@
 # 💸 👆 Roundup
 
 
-https://api-sandbox.starlingbank.com
-
 Assumptions:
+
 Currency is always GBP
+
+Application is stateless so a new savings goal is created each time 
+
+all accounts -> into one accounts savings goal 
+only first account is taken in consideration 
+
+Testing happy path 
 
 no rest resource 
 Notes on how the API is consumed:

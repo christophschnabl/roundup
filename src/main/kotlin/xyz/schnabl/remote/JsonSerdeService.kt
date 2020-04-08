@@ -1,7 +1,7 @@
-package xyz.schnabl
+package xyz.schnabl.remote
 
 /**
- * TODO KDOC
+ * Declares an interface to serialize and deserialize to and from json to not depend on one json framework
  */
 interface JsonSerdeService {
 

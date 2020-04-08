@@ -2,69 +2,28 @@ package xyz.schnabl
 
 import com.google.inject.Guice
 import com.google.inject.Injector
-import xyz.schnabl.remote.StarlingClient
-import xyz.schnabl.remote.feed.TransactionDirection
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 
 /**
- * TODO kdco
+ * The main method runs the round up directly for the provided bearer authentication token as
+ * environment variable (e.g. STARLING_TOKEN=ey...). The first account for this user is taken into consideration and
+ * a savings goal for this week is created with a provided name and target. A new goal is created each time as this application is stateless,
+ * but could easily be adapted.
  */
 fun main() {
     val injector: Injector = Guice.createInjector(RoundupModule())
+    val roundupService = injector.getInstance(RoundupServiceImpl::class.java)
 
-    // Take User Input parameter
-    // Get Accounts for User - simple accounts request
-    // Get Transactions for User for all accounts (since the beginning of the last week) - calculate date request takes the parameter
+    val name = "Flight to Vienna"
+    val target = 10000L
 
-    val client = injector.getInstance(StarlingClient::class.java)
-    val now = LocalDateTime.now().minusDays(10)
-    val savingsGoalName = ""
+    // TODO insufficient funds document
+    // TODO when to create a savings goal document
+    // TODO wildcard imports
 
-    val firstDayOfWeek = now.toStartDate().minusDays(now.dayOfWeek.value - 1L).toStartDate()
+    val transactionsForAccount = roundupService.getAllOutgoingTransactionsForFirstAccount()
+    val roundUp = roundupService.getRoundupSumForTransactions(transactionsForAccount.second)
+    val savingsGoalInfo = roundupService.createAndTransferToSavingsGoal(transactionsForAccount.first, name, target, roundUp)
 
-    println(firstDayOfWeek.toInstant(ZoneOffset.UTC))
-
-    val accounts = client.getAccountsForUser()
-
-    val outgoingTransactionsForAllAccounts = accounts.map { account ->
-        println(client.getTransactionsForAccountByCategory(account.accountUid, account.defaultCategory, firstDayOfWeek))
-        val transactions = client.getTransactionsForAccountByCategory(account.accountUid, account.defaultCategory, firstDayOfWeek)
-        transactions.feedItems.filter {feedItem ->
-            feedItem.direction == TransactionDirection.OUT
-        }.map { feedItem ->
-            feedItem
-        }
-    }.flatten()
-
-    // TODO isolate into own class that can be tested easily
-    val amountToTopUp = outgoingTransactionsForAllAccounts.map { transaction ->
-        transaction.amount.minorUnits
-    }.also {
-        println(it)
-    }.map {amount ->
-        (100 * (amount / 100) + 100) - amount
-    }.also {
-        println(it)
-    }.sum()
-    // TODO add info when printing
-
-    // val savingsGoalDto = client.createSavingsGoal(accounts[0].accountUid, "journey", 100).also { println(it) }
-    // TODO insufficient funds?
-    // TODO when to create a savings goal
-    // client.transferToSavingsGoal(accounts[0].accountUid, savingsGoalDto.savingsGoalUid, UUID.randomUUID(), 10).also { println(it) }
-
-    // TODO query savings goal
-}
-
-// TODO Documentation or source code comments to help your reviewer orient themselves will also be appreciated!
-
-
-/**
- * Sets the hours, minutes, etc. to zero by subtracting its current value
- */
-fun LocalDateTime.toStartDate(): LocalDateTime {
-    return minusHours(this.hour * 1L).minusMinutes(this.minute * 1L).minusSeconds(this.second * 1L)
-        .minusNanos(this.nano * 1L)
+    println("Your current savings goal progress is ${savingsGoalInfo.totalSaved.minorUnits}/${savingsGoalInfo.target.minorUnits} (${savingsGoalInfo.savedPercentage}%)")
 }

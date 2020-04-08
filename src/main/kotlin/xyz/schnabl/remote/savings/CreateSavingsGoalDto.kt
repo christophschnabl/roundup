@@ -2,10 +2,9 @@ package xyz.schnabl.remote.savings
 
 import xyz.schnabl.remote.AmountDto
 import java.util.Currency
-// TODO wildcard imports
 
 /**
- * TODO Kdoc
+ * Represents the RequestBody specified in the Starling API for creating a savings goal
  */
 data class CreateSavingsGoalDto(
     val name: String,

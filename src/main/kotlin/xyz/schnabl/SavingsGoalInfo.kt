@@ -1,4 +1,11 @@
 package xyz.schnabl
 
-class SavingsGoalInfo {
-}
+import java.util.UUID
+
+data class SavingsGoalInfo (
+    val savingsGoalUid: UUID,
+    val name: String,
+    val target: Amount,
+    val totalSaved: Amount,
+    val savedPercentage: Byte
+)
