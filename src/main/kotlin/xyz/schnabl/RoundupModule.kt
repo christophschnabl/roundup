@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.inject.AbstractModule
+import com.google.inject.Inject
 import com.google.inject.Provides
 import com.google.inject.name.Named
 import com.google.inject.name.Names
@@ -43,10 +44,10 @@ internal class AuthenticationInterceptor : Interceptor {
 
 class RoundupModule : AbstractModule() {
     override fun configure() {
-        loadProperties()
         bind(StarlingClient::class.java).to(StarlingClientImpl::class.java)
         bind(RoundupService::class.java).to(RoundupServiceImpl::class.java)
         bind(JsonSerdeService::class.java).to(GsonSerdeService::class.java)
+        loadProperties()
     }
 
     @Provides
@@ -89,8 +90,8 @@ class RoundupModule : AbstractModule() {
     private fun loadProperties() {
         try {
             val properties = Properties()
-            val configFileName = RoundupModule::class.java.classLoader.getResource("application.properties")
-            properties.load(FileReader(configFileName.file))
+            val configFileName = RoundupModule::class.java.classLoader.getResourceAsStream("application.properties")
+            properties.load(configFileName)
             Names.bindProperties(binder(), properties)
         } catch (ex: IOException) {
             // TODO logger error here and exit application ->

@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 /**
- * TODO kdoc
+ * Implements the RoundupService
  */
 @Singleton
 class RoundupServiceImpl @Inject constructor(private val client: StarlingClient) : RoundupService {

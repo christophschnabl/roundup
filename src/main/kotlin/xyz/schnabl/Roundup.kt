@@ -19,7 +19,6 @@ fun main() {
 
     // TODO insufficient funds document
     // TODO when to create a savings goal document
-    // TODO wildcard imports
 
     val transactionsForAccount = roundupService.getAllOutgoingTransactionsForFirstAccount()
     val roundUp = roundupService.getRoundupSumForTransactions(transactionsForAccount.second)
